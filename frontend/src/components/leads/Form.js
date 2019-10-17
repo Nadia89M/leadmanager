@@ -7,7 +7,14 @@ export class Form extends Component {
   state = {
     name: "",
     email: "",
-    message: ""
+    message: "",
+    company: "",
+    city: "",
+    region: "",
+    district: "",
+    address: "",
+    number: "",
+    status: "NEW"
   };
 
   static propTypes = {
@@ -18,18 +25,25 @@ export class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, message } = this.state;
-    const lead = { name, email, message };
+    const { name, email, message, company, city, region, district, address, number, status } = this.state;
+    const lead = { name, email, message, company, city, region, district, address, number, status };
     this.props.addLead(lead);
     this.setState({
       name: "",
       email: "",
-      message: ""
+      message: "",
+      company: "",
+      city: "",
+      region: "",
+      district: "",
+      address: "",
+      number: "",
+      status: "NEW"
     });
   };
 
   render() {
-    const { name, email, message } = this.state;
+    const { name, email, message, company, city, region, district, address, number, status } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Lead</h2>
@@ -52,6 +66,26 @@ export class Form extends Component {
               name="email"
               onChange={this.onChange}
               value={email}
+            />
+          </div>
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input
+              className="form-control"
+              type="number"
+              name="number"
+              onChange={this.onChange}
+              value={number}
+            />
+          </div>
+          <div className="form-group">
+            <label>Company</label>
+            <input
+              className="form-control"
+              type="company"
+              name="company"
+              onChange={this.onChange}
+              value={company}
             />
           </div>
           <div className="form-group">
