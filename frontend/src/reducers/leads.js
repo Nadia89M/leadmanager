@@ -1,7 +1,8 @@
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD, CLEAR_LEADS, EDIT_LEAD, SET_CURRENT } from "../actions/types.js";
+import { GET_LEADS, DELETE_LEAD, ADD_LEAD, CLEAR_LEADS, EDIT_LEAD, SET_CURRENT, SEARCH_LEADS, CLEAR_SEARCHED_LEADS } from "../actions/types.js";
 
 const initialState = {
   leads: [],
+  searchedLeads: [],
   currentLead: ""
 };
 
@@ -10,7 +11,13 @@ export default function (state = initialState, action) {
     case GET_LEADS:
       return {
         ...state,
-        leads: action.payload
+        leads: action.payload,
+        searchedLeads: action.payload
+      };
+    case SEARCH_LEADS:
+      return {
+        ...state,
+        searchedLeads: state.leads.filter(lead => lead.company.toLowerCase() === action.payload.toLowerCase() || lead.company.toLowerCase().split(" ").includes(action.payload.toLowerCase()))
       };
     case DELETE_LEAD:
       return {
@@ -38,6 +45,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         leads: []
+      };
+    case CLEAR_SEARCHED_LEADS:
+      return {
+        ...state,
+        searchedLeads: state.leads
       };
     default:
       return state;

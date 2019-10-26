@@ -14,3 +14,5 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const CLEAR_LEADS = 'CLEAR_LEADS';
 export const SET_CURRENT = 'SET_CURRENT';
 export const EDIT_LEAD = 'EDIT_LEAD';
+export const SEARCH_LEADS = 'SEARCH_LEADS';
+export const CLEAR_SEARCHED_LEADS = 'CLEAR_SEARCHED_LEADS';

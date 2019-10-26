@@ -8,6 +8,7 @@ import ShowLead from "./ShowLead";
 export class Leads extends Component {
   static propTypes = {
     leads: PropTypes.array.isRequired,
+    searchedLeads: PropTypes.array.isRequired,
     getLeads: PropTypes.func.isRequired,
     deleteLead: PropTypes.func.isRequired,
     setCurrent: PropTypes.func.isRequired
@@ -70,8 +71,42 @@ export class Leads extends Component {
               <th />
             </tr>
           </thead>
-          <tbody>
+          {/* <tbody>
             {this.props.leads.map(lead => (
+              <tr key={lead.id} >
+                <td>{lead.name}</td>
+                <td>{lead.email}</td>
+                <td>{lead.message}</td>
+                <td>{lead.company}</td>
+                <td>{lead.city}</td>
+                <td>{lead.region}</td>
+                <td>{lead.district}</td>
+                <td>{lead.address}</td>
+                <td>{lead.number}</td>
+                <td>{lead.status}</td>
+                <td>
+                  <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                    {" "}
+                    Show
+                  </button>
+                  <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                    {" "}
+                    Edit
+                  </button>
+                  <button
+                    onClick={this.props.deleteLead.bind(this, lead.id)}
+                    className="btn btn-danger btn-sm"
+                  >
+                    {" "}
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody> */}
+
+          <tbody>
+            {this.props.searchedLeads.map(lead => (
               <tr key={lead.id} >
                 <td>{lead.name}</td>
                 <td>{lead.email}</td>
@@ -110,7 +145,8 @@ export class Leads extends Component {
 }
 
 const mapStateToProps = state => ({
-  leads: state.leads.leads
+  leads: state.leads.leads,
+  searchedLeads: state.leads.searchedLeads,
 });
 
 export default connect(
