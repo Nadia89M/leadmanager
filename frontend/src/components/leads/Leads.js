@@ -32,9 +32,6 @@ export class Leads extends Component {
               <div className="modal-body">
                 <EditLead />
               </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
             </div>
           </div>
         </div>
@@ -87,20 +84,20 @@ export class Leads extends Component {
                 <td>{lead.number}</td>
                 <td>{lead.status}</td>
                 <td>
+                  <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                    {" "}
+                    Show
+                  </button>
+                  <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                    {" "}
+                    Edit
+                  </button>
                   <button
                     onClick={this.props.deleteLead.bind(this, lead.id)}
                     className="btn btn-danger btn-sm"
                   >
                     {" "}
                     Delete
-                  </button>
-                  <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
-                    {" "}
-                    Edit
-                  </button>
-                  <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
-                    {" "}
-                    Show
                   </button>
                 </td>
               </tr>
