@@ -1,7 +1,8 @@
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD, CLEAR_LEADS } from "../actions/types.js";
+import { GET_LEADS, DELETE_LEAD, ADD_LEAD, CLEAR_LEADS, EDIT_LEAD, SET_CURRENT } from "../actions/types.js";
 
 const initialState = {
-  leads: []
+  leads: [],
+  currentLead: ""
 };
 
 export default function (state = initialState, action) {
@@ -20,6 +21,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         leads: [...state.leads, action.payload]
+      };
+    case EDIT_LEAD:
+      return {
+        ...state,
+        leads: state.leads.map(lead =>
+          lead.id === action.payload.id ? action.payload : lead
+        )
+      };
+    case SET_CURRENT:
+      return {
+        ...state,
+        currentLead: action.payload
       };
     case CLEAR_LEADS:
       return {

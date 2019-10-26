@@ -14,7 +14,8 @@ export class Form extends Component {
     district: "",
     address: "",
     number: "",
-    status: "NEW"
+    status: "NEW",
+    open: false
   };
 
   static propTypes = {
@@ -22,6 +23,10 @@ export class Form extends Component {
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  onClick = () => this.setState({
+    open: !this.state.open
+  });
 
   onSubmit = e => {
     e.preventDefault();
@@ -38,16 +43,27 @@ export class Form extends Component {
       district: "",
       address: "",
       number: "",
-      status: "NEW"
+      status: "NEW",
+      open: false
     });
   };
 
   render() {
-    const { name, email, message, company, city, region, district, address, number, status } = this.state;
+    const { name, email, message, company, city, region, district, address, number, status, open } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2>Add Lead</h2>
-        <form onSubmit={this.onSubmit}>
+        <h2>Add Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
+        <form onSubmit={this.onSubmit} hidden={open === false}>
+          <div className="form-group">
+            <label>Status</label>
+            <select className="form-control" name="status" value={this.state.status} defaultValue={this.state.status} onChange={this.onChange}>
+              <option value="NEW">New</option>
+              <option value="CONTACTED">Attempted to Contact</option>
+              <option value="CONNECTED">Connected</option>
+              <option value="OPEN">Open Deal</option>
+              <option value="UNQUALIFIED">Unqualified</option>
+            </select>
+          </div>
           <div className="form-group">
             <label>Name</label>
             <input
@@ -86,6 +102,46 @@ export class Form extends Component {
               name="company"
               onChange={this.onChange}
               value={company}
+            />
+          </div>
+          <div className="form-group">
+            <label>Region</label>
+            <input
+              className="form-control"
+              type="region"
+              name="region"
+              onChange={this.onChange}
+              value={region}
+            />
+          </div>
+          <div className="form-group">
+            <label>District</label>
+            <input
+              className="form-control"
+              type="district"
+              name="district"
+              onChange={this.onChange}
+              value={district}
+            />
+          </div>
+          <div className="form-group">
+            <label>City</label>
+            <input
+              className="form-control"
+              type="city"
+              name="city"
+              onChange={this.onChange}
+              value={city}
+            />
+          </div>
+          <div className="form-group">
+            <label>Address</label>
+            <input
+              className="form-control"
+              type="address"
+              name="address"
+              onChange={this.onChange}
+              value={address}
             />
           </div>
           <div className="form-group">
