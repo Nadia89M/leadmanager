@@ -14,6 +14,7 @@ export class ShowLead extends Component {
                 <h4><b>Name</b>: {currentLead.name}</h4>
                 <h4><b>Email</b>: {currentLead.email}</h4>
                 <h4><b>Message</b>: {currentLead.message}</h4>
+                <h4><b>Company</b>: {currentLead.company}</h4>
                 <h4><b>City</b>: {currentLead.city}</h4>
                 <h4><b>Region</b>: {currentLead.region}</h4>
                 <h4><b>District</b>: {currentLead.district}</h4>
