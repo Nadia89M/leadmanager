@@ -2,7 +2,7 @@ import axios from "axios";
 import { createMessage, returnErrors } from "./messages";
 import { tokenConfig } from "./auth";
 
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD, SET_CURRENT, EDIT_LEAD, SEARCH_LEADS, CLEAR_SEARCHED_LEADS } from "./types";
+import { GET_LEADS, DELETE_LEAD, ADD_LEAD, SET_CURRENT, EDIT_LEAD, SEARCH_LEADS, CLEAR_SEARCHED_LEADS, SEARCH_STATUS_LEADS } from "./types";
 
 // GET LEADS
 export const getLeads = () => (dispatch, getState) => {
@@ -89,9 +89,17 @@ export const searchLeads = text => (dispatch) => {
   });
 };
 
-// GET SEARCHED LEADS
+// CLEAR SEARCHED LEADS
 export const clearSearchedLeads = () => (dispatch) => {
   dispatch({
     type: CLEAR_SEARCHED_LEADS
+  });
+};
+
+// GET SEARCHED STATUS LEADS
+export const searchStatusLeads = status => (dispatch) => {
+  dispatch({
+    type: SEARCH_STATUS_LEADS,
+    payload: status
   });
 };

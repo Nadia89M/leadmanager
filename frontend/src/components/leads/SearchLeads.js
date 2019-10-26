@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { searchLeads, clearSearchedLeads } from "../../actions/leads";
+import { searchLeads, clearSearchedLeads, searchStatusLeads } from "../../actions/leads";
 
 export class SearchLeads extends Component {
     state = {
         text: "",
-        open: false
+        open: false,
+        status: ""
     };
 
     static propTypes = {
         clearSearchedLeads: PropTypes.func.isRequired,
         searchLeads: PropTypes.func.isRequired,
+        searchStatusLeads: PropTypes.func.isRequired,
     };
 
     loadProps = () => {
@@ -21,6 +23,15 @@ export class SearchLeads extends Component {
     }
 
     onChange = e => this.setState({ text: e.target.value });
+
+    onStatusChange = e => {
+        this.setState({ status: e.target.value });
+        if (e.target.value === "ALL") {
+            this.props.clearSearchedLeads();
+        } else {
+            this.props.searchStatusLeads(e.target.value);
+        }
+    }
 
     onClick = () => this.setState({
         open: !this.state.open
@@ -38,6 +49,7 @@ export class SearchLeads extends Component {
     clearLeads = e => {
         e.preventDefault();
         this.props.clearSearchedLeads();
+        this.setState({ status: "ALL" });
     }
 
     render() {
@@ -45,10 +57,24 @@ export class SearchLeads extends Component {
         return (
             <div className="card card-body mt-4 mb-4">
                 <h2>Search Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
-                <form className="form-inline" onSubmit={this.onSubmit} hidden={open === false}>
-                    <input value={this.state.text} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.onChange}></input>
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form onSubmit={this.onSubmit} hidden={open === false}>
+                    <div className="form-group form-inline">
+                        <input value={this.state.text} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.onChange}></input>
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </div>
+                    <div className="form-group">
+                        <label>Status</label>
+                        <select className="form-control status-filter" name="status" value={this.state.status} defaultValue="All" onChange={this.onStatusChange}>
+                            <option value="ALL">All</option>
+                            <option value="NEW">New</option>
+                            <option value="CONTACTED">Attempted to Contact</option>
+                            <option value="CONNECTED">Connected</option>
+                            <option value="OPEN">Open Deal</option>
+                            <option value="UNQUALIFIED">Unqualified</option>
+                        </select>
+                    </div>
                     <button className="btn btn-outline-danger clear-btn my-2 my-sm-0" onClick={this.clearLeads}>Clear</button>
+
                 </form>
             </div>
         );
@@ -57,5 +83,5 @@ export class SearchLeads extends Component {
 
 export default connect(
     null,
-    { searchLeads, clearSearchedLeads }
+    { searchLeads, searchStatusLeads, clearSearchedLeads }
 )(SearchLeads);
