@@ -59,7 +59,7 @@ export class EditLead extends Component {
 
     render() {
         return (
-            <div className="card card-body mt-4 mb-4" onMouseOver={this.loadProps}>
+            <div className="card card-body mt-4 mb-4" onMouseEnter={this.loadProps}>
                 <form onSubmit={this.onSubmit} >
                     <div className="form-group">
                         <label>Name</label>
