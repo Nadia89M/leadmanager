@@ -5,19 +5,19 @@ import { editLead } from "../../actions/leads";
 
 export class EditLead extends Component {
     state = {
-        id: this.props.currentLead.id,
-        name: this.props.currentLead.name,
-        email: this.props.currentLead.email,
-        message: this.props.currentLead.message,
-        company: this.props.currentLead.company,
-        city: this.props.currentLead.city,
-        region: this.props.currentLead.region,
-        district: this.props.currentLead.district,
-        address: this.props.currentLead.address,
-        number: this.props.currentLead.number,
-        last_action: this.props.currentLead.last_action,
-        to_be_contacted_on: this.props.currentLead.to_be_contacted_on,
-        status: this.props.currentLead.status
+        id: null,
+        name: "",
+        email: "",
+        message: "",
+        company: "",
+        city: "",
+        region: "",
+        district: "",
+        address: "",
+        number: "",
+        last_action: null,
+        to_be_contacted_on: "",
+        status: "NEW"
     };
 
     static propTypes = {
@@ -25,7 +25,7 @@ export class EditLead extends Component {
         currentLead: PropTypes.object.isRequired
     };
 
-    loadLead = () => {
+    loadProps = () => {
         this.setState({
             id: this.props.currentLead.id,
             name: this.props.currentLead.name,
@@ -59,7 +59,7 @@ export class EditLead extends Component {
 
     render() {
         return (
-            <div className="card card-body mt-4 mb-4" onMouseOver={this.loadLead}>
+            <div className="card card-body mt-4 mb-4" onMouseOver={this.loadProps}>
                 <form onSubmit={this.onSubmit} >
                     <div className="form-group">
                         <label>Name</label>
