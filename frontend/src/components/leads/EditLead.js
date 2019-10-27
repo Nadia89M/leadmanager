@@ -15,6 +15,8 @@ export class EditLead extends Component {
         district: "",
         address: "",
         number: "",
+        last_action: null,
+        to_be_contacted_on: "SOON",
         status: "NEW",
         isModalOpen: false
     };
@@ -52,6 +54,8 @@ export class EditLead extends Component {
             district: this.props.currentLead.district,
             address: this.props.currentLead.address,
             number: this.props.currentLead.number,
+            last_action: this.props.currentLead.last_action,
+            to_be_contacted_on: this.props.currentLead.to_be_contacted_on,
             status: this.props.currentLead.status
         });
     }
@@ -64,8 +68,8 @@ export class EditLead extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const { name, email, message, company, city, region, district, address, number, status } = this.state;
-        const lead = { name, email, message, company, city, region, district, address, number, status };
+        const { name, email, message, company, city, region, district, address, number, last_action, to_be_contacted_on, status } = this.state;
+        const lead = { name, email, message, company, city, region, district, address, number, last_action, to_be_contacted_on, status };
         const id = this.props.currentLead.id;
         this.props.editLead(id, lead);
     };
@@ -165,6 +169,34 @@ export class EditLead extends Component {
                             onChange={this.handleInputChange}
                             defaultValue={this.props.currentLead.address}
                         />
+                    </div>
+                    <div className="form-group">
+                        <label>Last Action</label>
+                        <input
+                            className="form-control"
+                            type="date"
+                            name="last_action"
+                            onChange={this.handleInputChange}
+                            defaultValue={this.props.currentLead.last_action}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>To be contacted on</label>
+                        <select className="form-control" name="to_be_contacted_on" value={this.state.to_be_contacted_on} defaultValue={this.props.currentLead.to_be_contacted_on} onChange={this.handleInputChange}>
+                            <option value="SOON">Soon</option>
+                            <option value="JANUARY">January</option>
+                            <option value="FEBRUARY">February</option>
+                            <option value="MARCH">March</option>
+                            <option value="APRIL">April</option>
+                            <option value="MAY">May</option>
+                            <option value="JUNE">June</option>
+                            <option value="JULY">July</option>
+                            <option value="AUGUST">August</option>
+                            <option value="SEPTEMBER">September</option>
+                            <option value="OCTOBER">October</option>
+                            <option value="NOVEMBER">November</option>
+                            <option value="DECEMBER">December</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>Message</label>

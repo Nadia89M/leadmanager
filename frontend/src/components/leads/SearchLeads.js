@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { searchLeads, clearSearchedLeads, searchStatusLeads } from "../../actions/leads";
+import { searchLeads, clearSearchedLeads, searchStatusLeads, searchMonthLeads } from "../../actions/leads";
 
 export class SearchLeads extends Component {
     state = {
         text: "",
         open: false,
-        status: ""
+        status: "",
+        to_be_contacted_on: ""
     };
 
     static propTypes = {
         clearSearchedLeads: PropTypes.func.isRequired,
         searchLeads: PropTypes.func.isRequired,
         searchStatusLeads: PropTypes.func.isRequired,
+        searchMonthLeads: PropTypes.func.isRequired,
     };
 
     loadProps = () => {
@@ -30,6 +32,15 @@ export class SearchLeads extends Component {
             this.props.clearSearchedLeads();
         } else {
             this.props.searchStatusLeads(e.target.value);
+        }
+    }
+
+    onMonthChange = e => {
+        this.setState({ to_be_contacted_on: e.target.value });
+        if (e.target.value === "ALL") {
+            this.props.clearSearchedLeads();
+        } else {
+            this.props.searchMonthLeads(e.target.value);
         }
     }
 
@@ -56,8 +67,9 @@ export class SearchLeads extends Component {
         const { open } = this.state;
         return (
             <div className="card card-body mt-4 mb-4">
-                <h2>Search Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
+                <h2>Search Lead<i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
                 <form onSubmit={this.onSubmit} hidden={open === false}>
+                    <label>Search per name, company or region</label>
                     <div className="form-group form-inline">
                         <input value={this.state.text} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.onChange}></input>
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -73,6 +85,25 @@ export class SearchLeads extends Component {
                             <option value="UNQUALIFIED">Unqualified</option>
                         </select>
                     </div>
+                    <div className="form-group">
+                        <label>To be contacted on</label>
+                        <select className="form-control status-filter" name="to_be_contacted_on" value={this.state.to_be_contacted_on} defaultValue="All" onChange={this.onMonthChange}>
+                            <option value="ALL">All</option>
+                            <option value="SOON">Soon</option>
+                            <option value="JANUARY">January</option>
+                            <option value="FEBRUARY">February</option>
+                            <option value="MARCH">March</option>
+                            <option value="APRIL">April</option>
+                            <option value="MAY">May</option>
+                            <option value="JUNE">June</option>
+                            <option value="JULY">July</option>
+                            <option value="AUGUST">August</option>
+                            <option value="SEPTEMBER">September</option>
+                            <option value="OCTOBER">October</option>
+                            <option value="NOVEMBER">November</option>
+                            <option value="DECEMBER">December</option>
+                        </select>
+                    </div>
                     <button className="btn btn-outline-danger clear-btn my-2 my-sm-0" onClick={this.clearLeads}>Clear</button>
 
                 </form>
@@ -83,5 +114,5 @@ export class SearchLeads extends Component {
 
 export default connect(
     null,
-    { searchLeads, searchStatusLeads, clearSearchedLeads }
+    { searchLeads, searchStatusLeads, searchMonthLeads, clearSearchedLeads }
 )(SearchLeads);

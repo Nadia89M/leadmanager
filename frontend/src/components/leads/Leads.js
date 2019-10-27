@@ -67,6 +67,8 @@ export class Leads extends Component {
               <th>District</th>
               <th>Address</th>
               <th>Number</th>
+              <th>Last action</th>
+              <th>To be contacted on</th>
               <th>Status</th>
               <th />
             </tr>
@@ -117,6 +119,8 @@ export class Leads extends Component {
                 <td>{lead.district}</td>
                 <td>{lead.address}</td>
                 <td>{lead.number}</td>
+                <td>{lead.last_action}</td>
+                <td>{lead.to_be_contacted_on}</td>
                 <td>{lead.status}</td>
                 <td>
                   <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>

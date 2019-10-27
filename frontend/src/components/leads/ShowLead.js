@@ -20,6 +20,8 @@ export class ShowLead extends Component {
                 <h4><b>District</b>: {currentLead.district}</h4>
                 <h4><b>Address</b>: {currentLead.address}</h4>
                 <h4><b>Number</b>: {currentLead.number}</h4>
+                <h4><b>Last action</b>: {currentLead.last_action}</h4>
+                <h4><b>To be contacted on</b>: {currentLead.to_be_contacted_on}</h4>
                 <h4><b>Status</b>: {currentLead.status}</h4>
             </div>
         );

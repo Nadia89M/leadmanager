@@ -14,6 +14,8 @@ export class Form extends Component {
     district: "",
     address: "",
     number: "",
+    last_action: null,
+    to_be_contacted_on: "SOON",
     status: "NEW",
     open: false
   };
@@ -30,8 +32,8 @@ export class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, message, company, city, region, district, address, number, status } = this.state;
-    const lead = { name, email, message, company, city, region, district, address, number, status };
+    const { name, email, message, company, city, region, district, address, number, last_action, to_be_contacted_on, status } = this.state;
+    const lead = { name, email, message, company, city, region, district, address, number, last_action, to_be_contacted_on, status };
     this.props.addLead(lead);
     this.setState({
       name: "",
@@ -43,20 +45,22 @@ export class Form extends Component {
       district: "",
       address: "",
       number: "",
+      last_action: null,
+      to_be_contacted_on: "",
       status: "NEW",
       open: false
     });
   };
 
   render() {
-    const { name, email, message, company, city, region, district, address, number, status, open } = this.state;
+    const { name, email, message, company, city, region, district, address, number, status, last_action, to_be_contacted_on, open } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
         <form onSubmit={this.onSubmit} hidden={open === false}>
           <div className="form-group">
             <label>Status</label>
-            <select className="form-control" name="status" value={this.state.status} defaultValue={this.state.status} onChange={this.onChange}>
+            <select className="form-control" name="status" value={status} defaultValue={status} onChange={this.onChange}>
               <option value="NEW">New</option>
               <option value="CONTACTED">Attempted to Contact</option>
               <option value="CONNECTED">Connected</option>
@@ -143,6 +147,34 @@ export class Form extends Component {
               onChange={this.onChange}
               value={address}
             />
+          </div>
+          <div className="form-group">
+            <label>Last Action</label>
+            <input
+              className="form-control"
+              type="date"
+              name="last_action"
+              onChange={this.onChange}
+              value={last_action}
+            />
+          </div>
+          <div className="form-group">
+            <label>To be contacted on</label>
+            <select className="form-control" name="to_be_contacted_on" value={to_be_contacted_on} defaultValue={to_be_contacted_on} onChange={this.onChange}>
+              <option value="SOON">Soon</option>
+              <option value="JANUARY">January</option>
+              <option value="FEBRUARY">February</option>
+              <option value="MARCH">March</option>
+              <option value="APRIL">April</option>
+              <option value="MAY">May</option>
+              <option value="JUNE">June</option>
+              <option value="JULY">July</option>
+              <option value="AUGUST">August</option>
+              <option value="SEPTEMBER">September</option>
+              <option value="OCTOBER">October</option>
+              <option value="NOVEMBER">November</option>
+              <option value="DECEMBER">December</option>
+            </select>
           </div>
           <div className="form-group">
             <label>Message</label>
