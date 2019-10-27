@@ -5,20 +5,19 @@ import { editLead } from "../../actions/leads";
 
 export class EditLead extends Component {
     state = {
-        id: null,
-        name: "",
-        email: "",
-        message: "",
-        company: "",
-        city: "",
-        region: "",
-        district: "",
-        address: "",
-        number: "",
-        last_action: null,
-        to_be_contacted_on: "SOON",
-        status: "NEW",
-        isModalOpen: false
+        id: this.props.currentLead.id,
+        name: this.props.currentLead.name,
+        email: this.props.currentLead.email,
+        message: this.props.currentLead.message,
+        company: this.props.currentLead.company,
+        city: this.props.currentLead.city,
+        region: this.props.currentLead.region,
+        district: this.props.currentLead.district,
+        address: this.props.currentLead.address,
+        number: this.props.currentLead.number,
+        last_action: this.props.currentLead.last_action,
+        to_be_contacted_on: this.props.currentLead.to_be_contacted_on,
+        status: this.props.currentLead.status
     };
 
     static propTypes = {
@@ -26,23 +25,7 @@ export class EditLead extends Component {
         currentLead: PropTypes.object.isRequired
     };
 
-    modalOpen = () => {
-        if (this.state.isModalOpen === false) {
-            setTimeout(() => {
-                this.loadProps();
-            }, 3000);
-        }
-        this.setState({
-            isModalOpen: true
-        });
-    }
-
-    modalClose = () => this.setState({
-        isModalOpen: false
-    });
-
-
-    loadProps = () => {
+    loadLead = () => {
         this.setState({
             id: this.props.currentLead.id,
             name: this.props.currentLead.name,
@@ -76,19 +59,8 @@ export class EditLead extends Component {
 
     render() {
         return (
-            <div className="card card-body mt-4 mb-4">
-                <form onSubmit={this.onSubmit} onMouseEnter={this.modalOpen}>
-                    <div className="form-group">
-                        <label>Status</label>
-
-                        <select className="form-control" name="status" value={this.state.status} defaultValue={this.props.currentLead.status} onChange={this.handleInputChange}>
-                            <option value="NEW">New</option>
-                            <option value="CONTACTED">Attempted to Contact</option>
-                            <option value="CONNECTED">Connected</option>
-                            <option value="OPEN">Open Deal</option>
-                            <option value="UNQUALIFIED">Unqualified</option>
-                        </select>
-                    </div>
+            <div className="card card-body mt-4 mb-4" onMouseOver={this.loadLead}>
+                <form onSubmit={this.onSubmit} >
                     <div className="form-group">
                         <label>Name</label>
                         <input
@@ -196,6 +168,17 @@ export class EditLead extends Component {
                             <option value="OCTOBER">October</option>
                             <option value="NOVEMBER">November</option>
                             <option value="DECEMBER">December</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Status</label>
+
+                        <select className="form-control" name="status" value={this.state.status} defaultValue={this.props.currentLead.status} onChange={this.handleInputChange}>
+                            <option value="NEW">New</option>
+                            <option value="CONTACTED">Attempted to Contact</option>
+                            <option value="CONNECTED">Connected</option>
+                            <option value="OPEN">Open Deal</option>
+                            <option value="UNQUALIFIED">Unqualified</option>
                         </select>
                     </div>
                     <div className="form-group">

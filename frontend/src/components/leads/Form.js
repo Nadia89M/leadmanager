@@ -59,16 +59,6 @@ export class Form extends Component {
         <h2>Add Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
         <form onSubmit={this.onSubmit} hidden={open === false}>
           <div className="form-group">
-            <label>Status</label>
-            <select className="form-control" name="status" value={status} defaultValue={status} onChange={this.onChange}>
-              <option value="NEW">New</option>
-              <option value="CONTACTED">Attempted to Contact</option>
-              <option value="CONNECTED">Connected</option>
-              <option value="OPEN">Open Deal</option>
-              <option value="UNQUALIFIED">Unqualified</option>
-            </select>
-          </div>
-          <div className="form-group">
             <label>Name</label>
             <input
               className="form-control"
@@ -174,6 +164,16 @@ export class Form extends Component {
               <option value="OCTOBER">October</option>
               <option value="NOVEMBER">November</option>
               <option value="DECEMBER">December</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Status</label>
+            <select className="form-control" name="status" value={status} defaultValue={status} onChange={this.onChange}>
+              <option value="NEW">New</option>
+              <option value="CONTACTED">Attempted to Contact</option>
+              <option value="CONNECTED">Connected</option>
+              <option value="OPEN">Open Deal</option>
+              <option value="UNQUALIFIED">Unqualified</option>
             </select>
           </div>
           <div className="form-group">
