@@ -10,22 +10,73 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static "frontend/main.css" %}">
+
+  <link rel="shortcut icon" type="image/png" href="{% static "frontend/assets/images/icon/favicon.ico" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/font-awesome.min.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/themify-icons.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/metisMenu.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/owl.carousel.min.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/slicknav.min.css" %}">
+  <!-- amchart css -->
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+  <!-- others css -->
+  <link rel="stylesheet" href="{% static "frontend/assets/css/typography.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/default-css.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/styles.css" %}">
+  <link rel="stylesheet" href="{% static "frontend/assets/css/responsive.css" %}">
+  <!-- modernizr css -->
+  <script src="{% static "frontend/assets/js/vendor/modernizr-2.8.3.min.js" %}"></script>
   </link>
   <title>Lead Manager</title>
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <div class="page-container">
+    <div id="app"></div>
+  </div>
   <script src="{% static "frontend/main.js" %}"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
+
+  <!-- jquery latest version -->
+  <script src="{% static "frontend/assets/js/vendor/jquery-2.2.4.min.js" %}"></script>
+  <!-- bootstrap 4 js -->
+  <script src="{% static "frontend/assets/js/popper.min.js" %}"></script>
+  <script src="{% static "frontend/assets/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "frontend/assets/js/owl.carousel.min.js" %}"></script>
+  <script src="{% static "frontend/assets/js/metisMenu.min.js" %}"></script>
+  <script src="{% static "frontend/assets/js/jquery.slimscroll.min.js" %}"></script>
+  <script src="{% static "frontend/assets/js/jquery.slicknav.min.js" %}"></script>
+
+  <!-- start chart js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+  <!-- start highcharts js -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <!-- start zingchart js -->
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script>
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+  </script>
+  <!-- all line chart activation -->
+  <script src="{% static "frontend/assets/js/line-chart.js" %}"></script>
+  <!-- all pie chart -->
+  <script src="{% static "frontend/assets/js/pie-chart.js" %}"></script>
+  <!-- others plugins -->
+  <script src="{% static "frontend/assets/js/plugins.js" %}"></script>
+  <script src="{% static "frontend/assets/js/scripts.js" %}"></script>
 </body>
 
 </html>

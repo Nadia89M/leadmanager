@@ -193,7 +193,7 @@ export class EditLead extends Component {
                     </div>
                     <div className="form-group">
                         <div className="modal-footer">
-                            <button type="submit" className="btn btn-primary" onClick={this.modalClose}>
+                            <button type="submit" className="btn btn-primary mr-auto" onClick={this.modalClose}>
                                 Edit
                             </button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

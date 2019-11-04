@@ -56,7 +56,7 @@ export class Form extends Component {
     const { name, email, message, company, city, region, district, address, number, status, last_action, to_be_contacted_on, open } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2>Add Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
+        <h4 className="pb-3 page-title pull-left">Add Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h4>
         <form onSubmit={this.onSubmit} hidden={open === false}>
           <div className="form-group">
             <label>Name</label>

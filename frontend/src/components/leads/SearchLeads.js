@@ -67,12 +67,12 @@ export class SearchLeads extends Component {
         const { open } = this.state;
         return (
             <div className="card card-body mt-4 mb-4">
-                <h2>Search Lead<i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h2>
+                <h4 className="pb-3 page-title pull-left">Search Lead<i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h4>
                 <form onSubmit={this.onSubmit} hidden={open === false}>
-                    <label>Search per name, company or region</label>
-                    <div className="form-group form-inline">
-                        <input value={this.state.text} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.onChange}></input>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <div class="search-box form-group">
+                        <label>Search per name, company or region</label>
+                        <input value={this.state.text} className="form-control mr-sm-2" type="search" placeholder="Search ..." aria-label="Search" onChange={this.onChange}></input>
+                        <button type="submit"><i class="ti-search"></i></button>
                     </div>
                     <div className="form-group">
                         <label>Status</label>

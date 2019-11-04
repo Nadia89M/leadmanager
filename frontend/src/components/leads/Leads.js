@@ -54,7 +54,7 @@ export class Leads extends Component {
             </div>
           </div>
         </div>
-        <h2>Leads</h2>
+        <h4 className="pb-3 page-title pull-left">Leads</h4>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -73,40 +73,6 @@ export class Leads extends Component {
               <th />
             </tr>
           </thead>
-          {/* <tbody>
-            {this.props.leads.map(lead => (
-              <tr key={lead.id} >
-                <td>{lead.name}</td>
-                <td>{lead.email}</td>
-                <td>{lead.message}</td>
-                <td>{lead.company}</td>
-                <td>{lead.city}</td>
-                <td>{lead.region}</td>
-                <td>{lead.district}</td>
-                <td>{lead.address}</td>
-                <td>{lead.number}</td>
-                <td>{lead.status}</td>
-                <td>
-                  <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
-                    {" "}
-                    Show
-                  </button>
-                  <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
-                    {" "}
-                    Edit
-                  </button>
-                  <button
-                    onClick={this.props.deleteLead.bind(this, lead.id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody> */}
-
           <tbody>
             {this.props.searchedLeads.map(lead => (
               <tr key={lead.id} >
@@ -123,21 +89,22 @@ export class Leads extends Component {
                 <td>{lead.to_be_contacted_on}</td>
                 <td>{lead.status}</td>
                 <td>
-                  <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
-                    {" "}
-                    Show
-                  </button>
-                  <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
-                    {" "}
-                    Edit
-                  </button>
-                  <button
-                    onClick={this.props.deleteLead.bind(this, lead.id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    Delete
-                  </button>
+                  <div className="d-flex justify-content-center">
+                    <a className="px-2" href="#" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                      {" "}
+                      <i class="far fa-eye"></i>
+                    </a>
+                    <a className="px-2 d-lg-block" href="#" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                      {" "}
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a className="px-2" href="#"
+                      onClick={this.props.deleteLead.bind(this, lead.id)}
+                    >
+                      {" "}
+                      <i class="ti-trash"></i>
+                    </a>
+                  </div>
                 </td>
               </tr>
             ))}
