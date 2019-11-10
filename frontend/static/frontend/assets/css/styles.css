@@ -115,6 +115,12 @@
     border-color: #D27E51 !important;
 }
 
+.btn-outline-danger:hover {
+    color: white !important;
+    border-color: #D27E51 !important;
+    background-color: #D27E51 !important;
+}
+
 /*------------------------- END Core Css -------------------*/
 
 
