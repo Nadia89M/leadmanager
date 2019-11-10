@@ -33,17 +33,17 @@ export class Header extends Component {
     );
 
     return (
-      <div class="page-title-area">
-        <div class="row align-items-center">
-          <div class="col-sm-6">
-            <div class="breadcrumbs-area clearfix">
-              <h4 class="page-title pull-left"><strong class="app-title">Lead Manager</strong></h4>
+      <div className="page-title-area">
+        <div className="row align-items-center">
+          <div className="col-sm-6">
+            <div className="breadcrumbs-area clearfix">
+              <h4 className="page-title pull-left"><strong className="app-title">Lead Manager</strong></h4>
             </div>
           </div>
-          <div class="col-sm-6 clearfix">
-            <div class="user-profile pull-right">
-              <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{user ? `Welcome ${user.username}` : ""}<i class="fa fa-angle-down"></i></h4>
-              <div class="dropdown-menu">
+          <div className="col-sm-6 clearfix">
+            <div className="user-profile pull-right">
+              <h4 className="user-name dropdown-toggle" data-toggle="dropdown">{user ? `Welcome ${user.username}` : ""}<i className="fa fa-angle-down"></i></h4>
+              <div className="dropdown-menu">
                 {isAuthenticated ? authLinks : guestLinks}
               </div>
             </div>

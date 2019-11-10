@@ -1,11 +1,54 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { filteredLeads, getLeads } from "../../actions/leads";
 
-export default class Home extends Component {
+class Home extends Component {
+    static propTypes = {
+        auth: PropTypes.object.isRequired,
+        filteredLeads: PropTypes.func.isRequired,
+        getLeads: PropTypes.func.isRequired,
+        filteredLeadsNumber: PropTypes.number.isRequired
+    };
+
+    componentDidMount() {
+        this.props.getLeads();
+        setTimeout(
+            function () {
+                this.props.filteredLeads();
+            }
+                .bind(this),
+            500
+        );
+    }
+
     render() {
+        const { user } = this.props.auth;
         return (
-            <div>
-                <h1>Home</h1>
+            <div className="row">
+                <div className="col-12">
+                    <div className="home-intro">
+                        <h1 className="display-4">{user ? `Hello ${user.username}!` : "Hello!"}</h1>
+                        <p className="lead">Leads are the lifeblood of a business, and this lead manager can help you keep track on them and follow their sales funnel.</p>
+                        <hr className="my-4"></hr>
+                        <p>{`There ${this.props.filteredLeadsNumber === 1 ? `is ${this.props.filteredLeadsNumber} lead` : `are ${this.props.filteredLeadsNumber} leads`} which need to be contacted soon!`}</p>
+                    </div>
+                </div>
+                <div className="col-12">
+                    <div className="home-background">
+                    </div>
+                </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    leads: state.leads.leads,
+    filteredLeadsNumber: state.leads.filteredLeadsNumber
+});
+
+export default connect(
+    mapStateToProps, { filteredLeads, getLeads }
+)(Home);

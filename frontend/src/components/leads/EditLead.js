@@ -17,7 +17,8 @@ export class EditLead extends Component {
         number: "",
         last_action: null,
         to_be_contacted_on: "",
-        status: "NEW"
+        status: "NEW",
+        isModalClosing: false
     };
 
     static propTypes = {
@@ -49,6 +50,10 @@ export class EditLead extends Component {
         });
     }
 
+    closeModal() {
+        this.onSubmit();
+    }
+
     onSubmit = e => {
         e.preventDefault();
         const { name, email, message, company, city, region, district, address, number, last_action, to_be_contacted_on, status } = this.state;
@@ -69,6 +74,7 @@ export class EditLead extends Component {
                             name="name"
                             ref="name"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.name}
                         />
                     </div>
@@ -79,6 +85,7 @@ export class EditLead extends Component {
                             type="email"
                             name="email"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.email}
                         />
                     </div>
@@ -89,6 +96,7 @@ export class EditLead extends Component {
                             type="number"
                             name="number"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.number}
                         />
                     </div>
@@ -99,6 +107,7 @@ export class EditLead extends Component {
                             type="company"
                             name="company"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.company}
                         />
                     </div>
@@ -109,6 +118,7 @@ export class EditLead extends Component {
                             type="region"
                             name="region"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.region}
                         />
                     </div>
@@ -119,6 +129,7 @@ export class EditLead extends Component {
                             type="district"
                             name="district"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.district}
                         />
                     </div>
@@ -129,6 +140,7 @@ export class EditLead extends Component {
                             type="city"
                             name="city"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.city}
                         />
                     </div>
@@ -139,6 +151,7 @@ export class EditLead extends Component {
                             type="address"
                             name="address"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.address}
                         />
                     </div>
@@ -148,13 +161,15 @@ export class EditLead extends Component {
                             className="form-control"
                             type="date"
                             name="last_action"
-                            onChange={this.handleInputChange}
                             defaultValue={this.props.currentLead.last_action}
+                            onBlur={this.handleInputChange}
+                            onFocus={this.handleInputChange}
+                            onChange={this.handleInputChange}
                         />
                     </div>
                     <div className="form-group">
                         <label>To be contacted on</label>
-                        <select className="form-control" name="to_be_contacted_on" value={this.state.to_be_contacted_on} defaultValue={this.props.currentLead.to_be_contacted_on} onChange={this.handleInputChange}>
+                        <select className="form-control" name="to_be_contacted_on" value={this.state.to_be_contacted_on} defaultValue={this.props.currentLead.to_be_contacted_on} onChange={this.handleInputChange} onFocus={this.handleInputChange}>
                             <option value="SOON">Soon</option>
                             <option value="JANUARY">January</option>
                             <option value="FEBRUARY">February</option>
@@ -173,7 +188,7 @@ export class EditLead extends Component {
                     <div className="form-group">
                         <label>Status</label>
 
-                        <select className="form-control" name="status" value={this.state.status} defaultValue={this.props.currentLead.status} onChange={this.handleInputChange}>
+                        <select className="form-control" name="status" value={this.state.status} defaultValue={this.props.currentLead.status} onChange={this.handleInputChange} onFocus={this.handleInputChange}>
                             <option value="NEW">New</option>
                             <option value="CONTACTED">Attempted to Contact</option>
                             <option value="CONNECTED">Connected</option>
@@ -188,12 +203,13 @@ export class EditLead extends Component {
                             type="text"
                             name="message"
                             onChange={this.handleInputChange}
+                            onFocus={this.handleInputChange}
                             defaultValue={this.props.currentLead.message}
                         />
                     </div>
                     <div className="form-group">
                         <div className="modal-footer">
-                            <button type="submit" className="btn btn-primary mr-auto" onClick={this.modalClose}>
+                            <button type="submit" className="btn btn-primary mr-auto" onClick={this.closeModal}>
                                 Edit
                             </button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

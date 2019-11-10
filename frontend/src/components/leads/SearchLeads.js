@@ -69,10 +69,10 @@ export class SearchLeads extends Component {
             <div className="card card-body mt-4 mb-4">
                 <h4 className="pb-3 page-title pull-left">Search Lead<i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h4>
                 <form onSubmit={this.onSubmit} hidden={open === false}>
-                    <div class="search-box form-group">
+                    <div className="search-box form-group">
                         <label>Search per name, company or region</label>
                         <input value={this.state.text} className="form-control mr-sm-2" type="search" placeholder="Search ..." aria-label="Search" onChange={this.onChange}></input>
-                        <button type="submit"><i class="ti-search"></i></button>
+                        <button type="submit"><i className="ti-search"></i></button>
                     </div>
                     <div className="form-group">
                         <label>Status</label>

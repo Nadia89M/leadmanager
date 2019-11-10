@@ -1,9 +1,11 @@
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD, CLEAR_LEADS, EDIT_LEAD, SET_CURRENT, SEARCH_LEADS, CLEAR_SEARCHED_LEADS, SEARCH_STATUS_LEADS, SEARCH_MONTH_LEADS } from "../actions/types.js";
+import { GET_LEADS, DELETE_LEAD, ADD_LEAD, CLEAR_LEADS, EDIT_LEAD, SET_CURRENT, SEARCH_LEADS, CLEAR_SEARCHED_LEADS, SEARCH_STATUS_LEADS, SEARCH_MONTH_LEADS, FILTERED_LEADS } from "../actions/types.js";
 
 const initialState = {
   leads: [],
   searchedLeads: [],
-  currentLead: ""
+  currentLead: {},
+  filteredLeadsNumber: 0,
+  filteredLeadsGroup: []
 };
 
 export default function (state = initialState, action) {
@@ -13,6 +15,12 @@ export default function (state = initialState, action) {
         ...state,
         leads: action.payload,
         searchedLeads: action.payload
+      };
+    case FILTERED_LEADS:
+      return {
+        ...state,
+        filteredLeadsNumber: state.leads.filter(lead => lead.to_be_contacted_on === "SOON").length,
+        filteredLeadsGroup: state.leads.filter(lead => lead.to_be_contacted_on === "SOON")
       };
     case SEARCH_STATUS_LEADS:
       return {

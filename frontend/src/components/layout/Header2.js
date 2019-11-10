@@ -1,22 +1,79 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { filteredLeads, getLeads } from "../../actions/leads";
 
-export default class Header2 extends Component {
+class Header2 extends Component {
+    static propTypes = {
+        auth: PropTypes.object.isRequired,
+        filteredLeads: PropTypes.func.isRequired,
+        filteredLeadsGroup: PropTypes.array.isRequired,
+        getLeads: PropTypes.func.isRequired,
+        filteredLeadsNumber: PropTypes.number.isRequired
+    };
+
+    componentDidMount() {
+        this.props.getLeads();
+        setTimeout(
+            function () {
+                this.props.filteredLeads();
+            }
+                .bind(this),
+            500
+        );
+        console.log(this.props.filteredLeadsGroup);
+    }
+
     render() {
+        const { isAuthenticated } = this.props.auth;
+
+        const guestDiv = (
+            <Fragment>
+                <div></div>
+            </Fragment>
+        )
+
+        const authDiv = (
+            <Fragment>
+                <li className="dropdown">
+                    <i className="ti-bell dropdown-toggle" data-toggle="dropdown">
+                        <span>{this.props.filteredLeadsNumber}</span>
+                    </i>
+                    <div className="dropdown-menu bell-notify-box notify-box">
+                        <span className="notify-title">You have {`${this.props.filteredLeadsNumber === 1 ? `${this.props.filteredLeadsNumber}  new notification` : `${this.props.filteredLeadsNumber}  new notifications`}`}<Link to="/dashboard">View all</Link></span>
+                        <div className="nofity-list">
+                            {this.props.filteredLeadsGroup.map(lead => (
+                                <a href="#" className="notify-item">
+                                    <div className="notify-thumb"><i className="fas fa-phone btn-info"></i></div>
+                                    <div className="notify-text">
+                                        <p>Call {lead.name} - {lead.company}</p>
+                                        <span> {lead.number} </span>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </li>
+            </Fragment>
+        );
+
         return (
             <Fragment>
-                <div class="header-area">
-                    <div class="row align-items-center">
-                        <div class="col-md-6 col-sm-8 clearfix">
-                            <div class="nav-btn pull-left">
+                <div className="header-area">
+                    <div className="row align-items-center">
+                        <div className="col-md-6 col-sm-8 clearfix">
+                            <div className="nav-btn pull-left">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-4 clearfix">
-                            <ul class="notification-area pull-right">
-                                <li id="full-view"><i class="ti-fullscreen"></i></li>
-                                <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        <div className="col-md-6 col-sm-4 clearfix">
+                            <ul className="notification-area pull-right">
+                                <li id="full-view"><i className="ti-fullscreen"></i></li>
+                                <li id="full-view-exit"><i className="ti-zoom-out"></i></li>
+                                {(isAuthenticated && window.location.href.endsWith("/")) ? authDiv : guestDiv}
                             </ul>
                         </div>
                     </div>
@@ -25,3 +82,14 @@ export default class Header2 extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    leads: state.leads.leads,
+    filteredLeadsNumber: state.leads.filteredLeadsNumber,
+    filteredLeadsGroup: state.leads.filteredLeadsGroup
+});
+
+export default connect(
+    mapStateToProps, { filteredLeads, getLeads }
+)(Header2);

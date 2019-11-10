@@ -5,26 +5,26 @@ export default class Sidebar extends Component {
     render() {
         return (
             <div>
-                <div class="sidebar-menu">
-                    <div class="sidebar-header">
-                        <div class="logo">
+                <div className="sidebar-menu">
+                    <div className="sidebar-header">
+                        <div className="logo">
                             <a href="index.html"><div className="logo"></div></a>
                         </div>
                     </div>
-                    <div class="main-menu">
-                        <div class="menu-inner">
+                    <div className="main-menu">
+                        <div className="menu-inner">
                             <nav>
-                                <ul class="metismenu" id="menu">
+                                <ul className="metismenu" id="menu">
                                     <li>
                                         <Link to="/" className={window.location.href.endsWith("/") ? 'active' : ''}>
-                                            <i class="fas fa-home"></i><span>
+                                            <i className="fas fa-home"></i><span>
                                                 Home
                                             </span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/dashboard" className={window.location.href.endsWith("dashboard") ? 'active' : ''}>
-                                            <i class="ti-dashboard"></i><span>
+                                        <Link to="/dashboard" className={window.location.href.endsWith("/dashboard") || window.location.href.endsWith("#") ? 'active' : ''}>
+                                            <i className="ti-dashboard"></i><span>
                                                 Dashboard
                                             </span>
                                         </Link>

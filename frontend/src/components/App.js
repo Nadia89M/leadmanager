@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
 import {
-  HashRouter as Router,
+  Router,
   Route,
   Switch,
   Redirect
 } from "react-router-dom";
+
+import history from './history';
 
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
@@ -39,7 +41,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
-          <Router>
+          <Router history={history}>
             <Fragment>
               <Sidebar />
               <Header2 />

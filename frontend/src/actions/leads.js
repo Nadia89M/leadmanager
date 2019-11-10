@@ -2,7 +2,7 @@ import axios from "axios";
 import { createMessage, returnErrors } from "./messages";
 import { tokenConfig } from "./auth";
 
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD, SET_CURRENT, EDIT_LEAD, SEARCH_LEADS, CLEAR_SEARCHED_LEADS, SEARCH_STATUS_LEADS, SEARCH_MONTH_LEADS } from "./types";
+import { GET_LEADS, DELETE_LEAD, ADD_LEAD, SET_CURRENT, EDIT_LEAD, SEARCH_LEADS, CLEAR_SEARCHED_LEADS, SEARCH_STATUS_LEADS, SEARCH_MONTH_LEADS, FILTERED_LEADS } from "./types";
 
 // GET LEADS
 export const getLeads = () => (dispatch, getState) => {
@@ -109,5 +109,12 @@ export const searchMonthLeads = month => (dispatch) => {
   dispatch({
     type: SEARCH_MONTH_LEADS,
     payload: month
+  });
+};
+
+// FILTERED LEADS
+export const filteredLeads = () => (dispatch) => {
+  dispatch({
+    type: FILTERED_LEADS
   });
 };

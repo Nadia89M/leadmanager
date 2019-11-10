@@ -18,6 +18,11 @@ export class Leads extends Component {
     this.props.getLeads();
   }
 
+  deleteLead = id => {
+    this.props.deleteLead(id)
+    this.props.history.push('/#/dashboard');
+  }
+
   render() {
     return (
       <Fragment>
@@ -40,7 +45,7 @@ export class Leads extends Component {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Show Lead</h5>
+                <h5 className="modal-title" id="exampleModalLabel">Lead Details</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -59,17 +64,16 @@ export class Leads extends Component {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
-              <th>Message</th>
+              <th className="d-none d-lg-table-cell">Email</th>
               <th>Company</th>
-              <th>City</th>
+              <th className="d-none d-xl-table-cell">City</th>
               <th>Region</th>
-              <th>District</th>
-              <th>Address</th>
-              <th>Number</th>
-              <th>Last action</th>
-              <th>To be contacted on</th>
-              <th>Status</th>
+              <th className="d-none d-xl-table-cell">District</th>
+              <th className="d-none d-xl-table-cell">Address</th>
+              <th className="d-none d-lg-table-cell">Number</th>
+              <th className="d-none d-xl-table-cell">Last action</th>
+              <th className="d-none d-xl-table-cell">To be contacted on</th>
+              <th className="d-none d-xl-table-cell">Status</th>
               <th />
             </tr>
           </thead>
@@ -77,32 +81,31 @@ export class Leads extends Component {
             {this.props.searchedLeads.map(lead => (
               <tr key={lead.id} >
                 <td>{lead.name}</td>
-                <td>{lead.email}</td>
-                <td>{lead.message}</td>
+                <td className="d-none d-lg-table-cell">{lead.email}</td>
                 <td>{lead.company}</td>
-                <td>{lead.city}</td>
+                <td className="d-none d-xl-table-cell">{lead.city}</td>
                 <td>{lead.region}</td>
-                <td>{lead.district}</td>
-                <td>{lead.address}</td>
-                <td>{lead.number}</td>
-                <td>{lead.last_action}</td>
-                <td>{lead.to_be_contacted_on}</td>
-                <td>{lead.status}</td>
+                <td className="d-none d-xl-table-cell">{lead.district}</td>
+                <td className="d-none d-xl-table-cell">{lead.address}</td>
+                <td className="d-none d-lg-table-cell">{lead.number}</td>
+                <td className="d-none d-xl-table-cell">{lead.last_action}</td>
+                <td className="d-none d-xl-table-cell">{lead.to_be_contacted_on}</td>
+                <td className="d-none d-xl-table-cell">{lead.status}</td>
                 <td>
                   <div className="d-flex justify-content-center">
                     <a className="px-2" href="#" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
                       {" "}
-                      <i class="far fa-eye"></i>
+                      <i className="far fa-eye"></i>
                     </a>
-                    <a className="px-2 d-lg-block" href="#" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                    <a className="px-2 d-none d-xl-block" href="#" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
                       {" "}
-                      <i class="fa fa-edit"></i>
+                      <i className="fa fa-edit"></i>
                     </a>
                     <a className="px-2" href="#"
-                      onClick={this.props.deleteLead.bind(this, lead.id)}
+                      onClick={this.deleteLead.bind(this, lead.id)}
                     >
                       {" "}
-                      <i class="ti-trash"></i>
+                      <i className="ti-trash"></i>
                     </a>
                   </div>
                 </td>

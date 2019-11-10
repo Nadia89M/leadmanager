@@ -54,7 +54,7 @@
 
 /*------------------------- 1. Core Css -------------------*/
 .app-title {
-    color: #8255f7;
+    color: #D27E51;
 }
 
 .page-container {
@@ -101,18 +101,18 @@
 }
 
 .btn-primary {
-    background-color: #8914fe !important;
-    border-color: #8914fe !important;
+    background-color: #D27E51 !important;
+    border-color: #D27E51 !important;
 }
 
 .card a,
 .user-profile .dropdown-item {
-    color: #8914fe !important;
+    color: #D27E51 !important;
 }
 
 .btn-outline-danger {
-    color: #8914fe !important;
-    border-color: #8914fe !important;
+    color: #D27E51 !important;
+    border-color: #D27E51 !important;
 }
 
 /*------------------------- END Core Css -------------------*/
@@ -128,7 +128,7 @@
     height: 100vh;
     width: 280px;
     overflow: hidden;
-    background: #303641;
+    background: #1C1F48;
     box-shadow: 2px 0 32px rgba(0, 0, 0, 0.05);
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
@@ -158,8 +158,8 @@
 
 .sidebar-header {
     padding: 19px 32px 20px;
-    background: #303641;
-    border-bottom: 1px solid #343e50;
+    background: #1C1F48;
+    border-bottom: 1px solid #1C1F48;
 }
 .sidebar-menu .logo{
     text-align: center;
@@ -184,7 +184,7 @@
 }
 
 .metismenu li a i {
-    color: #6a56a5;
+    color: #D27E51;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
@@ -227,7 +227,7 @@
 .metismenu >li:hover>a,
 .metismenu >li>a.active {
     color: #fff;
-    background: #343942;
+    background: #26303f;
 }
 
 .metismenu li li a:after {
@@ -275,7 +275,7 @@
 }
 
 .mainheader-area .logo a span {
-    color: #843df9;
+    color: #D27E51;
 }
 
 .horizontal-menu {
@@ -353,7 +353,7 @@
 /* mobile menu */
 
 .slicknav_menu {
-    background: #8255f7;
+    background: #D27E51;
     padding: 0;
     margin-top: 20px;
 }
@@ -386,7 +386,7 @@
 
 .slicknav_nav .slicknav_row:hover {
     border-radius: 0;
-    background: #8e66f7;
+    background: #D27E51;
 }
 
 .slicknav_nav li i {
@@ -561,7 +561,7 @@
 .notify-title a {
     float: right;
     display: inline-block;
-    color: #ffee1d;
+    color: #1C1F48;
     font-size: 13px;
     text-decoration: underline;
 }
@@ -571,11 +571,13 @@
 }
 
 .nofity-list a {
+    min-height: 60px;
     padding: 0 30px;
     display: block;
     margin-bottom: 20px;
     border-bottom: 1px solid #f5f2f2;
     padding-bottom: 15px;
+    cursor: default !important;
 }
 
 .nofity-list a:last-child {
@@ -698,7 +700,7 @@ ul.breadcrumbs {
     display: block;
     font-size: 14px;
     font-weight: 400;
-    color: #7801ff;
+    color: #D27E51;
     letter-spacing: 0;
     margin-right: 16px;
     position: relative;
@@ -728,8 +730,8 @@ ul.breadcrumbs {
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    background: -webkit-linear-gradient(left, #8914fe 0%, #8063f5 100%);
-    background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
+    background: -webkit-linear-gradient(left, #D27E51 0%, rgb(213, 132, 89) 100%);
+    background: linear-gradient(to right, #D27E51 0%, rgb(213, 132, 89) 100%);
     padding: 17px 38px;
     position: relative;
 }
@@ -1073,7 +1075,7 @@ table.dbkit-table tr td {
 
 .trd-history-tabs ul li a:hover,
 .trd-history-tabs ul li a.active {
-    border-bottom: 2px solid #731ffd;
+    border-bottom: 2px solid #D27E51;
     padding-bottom: 7px;
     color: #565656;
 }
@@ -1122,7 +1124,7 @@ table.dbkit-table tr td {
 }
 
 .lts-content h2 a:hover {
-    color: #6d65dc;
+    color: #D27E51;
 }
 
 .lts-content p {
@@ -1247,7 +1249,7 @@ table.dbkit-table tr td {
 }
 
 .pagination_area ul li a:hover {
-    background: #8553fa;
+    background: #D27E51;
     color: #fff;
 }
 
