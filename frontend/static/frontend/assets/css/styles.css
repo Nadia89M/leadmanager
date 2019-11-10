@@ -464,19 +464,19 @@
     padding-left: 20px;
     padding-right: 40px;
     letter-spacing: 0;
-    background: #f3eeff;
+    background: rgb(255, 202, 172);
 }
 
 .search-box input::-webkit-input-placeholder {
-    color: #b1a7a7;
+    color: var(--primary-color);
 }
 
 .search-box input::-moz-placeholder {
-    color: #b1a7a7;
+    color: var(--primary-color);
 }
 
 .search-box input:-ms-input-placeholder {
-    color: #b1a7a7;
+    color: var(--primary-color);
 }
 
 .search-box button {
