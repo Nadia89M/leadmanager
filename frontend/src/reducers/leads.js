@@ -8,6 +8,12 @@ const initialState = {
   filteredLeadsGroup: []
 };
 
+const monthNames = ["january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december"
+];
+const d = new Date();
+const monthName = monthNames[d.getMonth()];
+
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_LEADS:
@@ -19,8 +25,8 @@ export default function (state = initialState, action) {
     case FILTERED_LEADS:
       return {
         ...state,
-        filteredLeadsNumber: state.leads.filter(lead => lead.to_be_contacted_on === "SOON").length,
-        filteredLeadsGroup: state.leads.filter(lead => lead.to_be_contacted_on === "SOON")
+        filteredLeadsGroup: state.leads.filter(lead => lead.to_be_contacted_on === "SOON" || lead.to_be_contacted_on.toLowerCase() === monthName),
+        filteredLeadsNumber: state.filteredLeadsGroup.length
       };
     case SEARCH_STATUS_LEADS:
       return {
