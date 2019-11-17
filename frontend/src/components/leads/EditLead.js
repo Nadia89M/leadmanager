@@ -18,7 +18,7 @@ export class EditLead extends Component {
         last_action: null,
         to_be_contacted_on: "",
         status: "NEW",
-        isModalClosing: false
+        isModalOpen: false
     };
 
     static propTypes = {
@@ -26,22 +26,27 @@ export class EditLead extends Component {
         currentLead: PropTypes.object.isRequired
     };
 
-    loadProps = () => {
-        this.setState({
-            id: this.props.currentLead.id,
-            name: this.props.currentLead.name,
-            email: this.props.currentLead.email,
-            message: this.props.currentLead.message,
-            company: this.props.currentLead.company,
-            city: this.props.currentLead.city,
-            region: this.props.currentLead.region,
-            district: this.props.currentLead.district,
-            address: this.props.currentLead.address,
-            number: this.props.currentLead.number,
-            last_action: this.props.currentLead.last_action,
-            to_be_contacted_on: this.props.currentLead.to_be_contacted_on,
-            status: this.props.currentLead.status
-        });
+    componentDidUpdate(oldProps) {
+        // By duplicating the data, you have to then
+        // keep the local copy in sync with the
+        // updated props...
+        if (oldProps.currentLead !== this.props.currentLead) {
+            this.setState({
+                id: this.props.currentLead.id,
+                name: this.props.currentLead.name,
+                email: this.props.currentLead.email,
+                message: this.props.currentLead.message,
+                company: this.props.currentLead.company,
+                city: this.props.currentLead.city,
+                region: this.props.currentLead.region,
+                district: this.props.currentLead.district,
+                address: this.props.currentLead.address,
+                number: this.props.currentLead.number,
+                last_action: this.props.currentLead.last_action,
+                to_be_contacted_on: this.props.currentLead.to_be_contacted_on,
+                status: this.props.currentLead.status
+            });
+        }
     }
 
     handleInputChange = e => {
@@ -50,21 +55,18 @@ export class EditLead extends Component {
         });
     }
 
-    closeModal() {
-        this.onSubmit();
-    }
-
     onSubmit = e => {
         e.preventDefault();
         const { name, email, message, company, city, region, district, address, number, last_action, to_be_contacted_on, status } = this.state;
         const lead = { name, email, message, company, city, region, district, address, number, last_action, to_be_contacted_on, status };
         const id = this.props.currentLead.id;
         this.props.editLead(id, lead);
+        document.getElementById('close-modal').click();
     };
 
     render() {
         return (
-            <div className="card card-body mt-4 mb-4" onMouseEnter={this.loadProps}>
+            <div className="card card-body mt-4 mb-4">
                 <form onSubmit={this.onSubmit} >
                     <div className="form-group">
                         <label>Name</label>
@@ -169,7 +171,7 @@ export class EditLead extends Component {
                     </div>
                     <div className="form-group">
                         <label>To be contacted on</label>
-                        <select className="form-control" name="to_be_contacted_on" value={this.state.to_be_contacted_on} defaultValue={this.props.currentLead.to_be_contacted_on} onChange={this.handleInputChange} onFocus={this.handleInputChange}>
+                        <select className="form-control" name="to_be_contacted_on" defaultValue={this.props.to_be_contacted_on} value={this.state.to_be_contacted_on} onChange={this.handleInputChange} onFocus={this.handleInputChange}>
                             <option value="SOON">Soon</option>
                             <option value="JANUARY">January</option>
                             <option value="FEBRUARY">February</option>
@@ -188,7 +190,7 @@ export class EditLead extends Component {
                     <div className="form-group">
                         <label>Status</label>
 
-                        <select className="form-control" name="status" value={this.state.status} defaultValue={this.props.currentLead.status} onChange={this.handleInputChange} onFocus={this.handleInputChange}>
+                        <select className="form-control" name="status" defaultValue={this.props.currentLead.status} value={this.state.status} onChange={this.handleInputChange} onFocus={this.handleInputChange}>
                             <option value="NEW">New</option>
                             <option value="CONTACTED">Attempted to Contact</option>
                             <option value="CONNECTED">Connected</option>
@@ -212,7 +214,7 @@ export class EditLead extends Component {
                             <button type="submit" className="btn btn-primary mr-auto" onClick={this.closeModal}>
                                 Edit
                             </button>
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="close-modal" type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </form>

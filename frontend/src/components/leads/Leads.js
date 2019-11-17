@@ -36,7 +36,7 @@ export class Leads extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <EditLead />
+                <EditLead current={this.props.currentLead} />
               </div>
             </div>
           </div>

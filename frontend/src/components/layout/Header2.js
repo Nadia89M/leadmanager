@@ -9,8 +9,7 @@ class Header2 extends Component {
         auth: PropTypes.object.isRequired,
         filteredLeads: PropTypes.func.isRequired,
         filteredLeadsGroup: PropTypes.array.isRequired,
-        getLeads: PropTypes.func.isRequired,
-        filteredLeadsNumber: PropTypes.number.isRequired
+        getLeads: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -22,7 +21,6 @@ class Header2 extends Component {
                 .bind(this),
             500
         );
-        console.log(this.props.filteredLeadsGroup);
     }
 
     render() {
@@ -38,16 +36,16 @@ class Header2 extends Component {
             <Fragment>
                 <li className="dropdown">
                     <i className="ti-bell dropdown-toggle" data-toggle="dropdown">
-                        <span>{this.props.filteredLeadsNumber}</span>
+                        <span>{this.props.filteredLeadsGroup.length}</span>
                     </i>
                     <div className="dropdown-menu bell-notify-box notify-box">
-                        <span className="notify-title">You have {`${this.props.filteredLeadsNumber === 1 ? `${this.props.filteredLeadsNumber}  new notification` : `${this.props.filteredLeadsNumber}  new notifications`}`}<Link to="/dashboard">View all</Link></span>
+                        <span className="notify-title">You have {`${this.props.filteredLeadsGroup.length === 1 ? `${this.props.filteredLeadsGroup.length}  new notification` : `${this.props.filteredLeadsGroup.length}  new notifications`}`}<Link to="/dashboard">View all</Link></span>
                         <div className="nofity-list">
                             {this.props.filteredLeadsGroup.map(lead => (
                                 <a href="#" className="notify-item">
                                     <div className="notify-thumb"><i className="fas fa-phone btn-info"></i></div>
                                     <div className="notify-text">
-                                        <p>Call {lead.name} - {lead.company}</p>
+                                        <p>Call {lead.name} {lead.name && lead.company ? '-' : ''} {lead.company}</p>
                                         <span> {lead.number} </span>
                                     </div>
                                 </a>
@@ -86,7 +84,6 @@ class Header2 extends Component {
 const mapStateToProps = state => ({
     auth: state.auth,
     leads: state.leads.leads,
-    filteredLeadsNumber: state.leads.filteredLeadsNumber,
     filteredLeadsGroup: state.leads.filteredLeadsGroup
 });
 

@@ -8,7 +8,7 @@ class Home extends Component {
         auth: PropTypes.object.isRequired,
         filteredLeads: PropTypes.func.isRequired,
         getLeads: PropTypes.func.isRequired,
-        filteredLeadsNumber: PropTypes.number.isRequired
+        filteredLeadsGroup: PropTypes.number.isRequired
     };
 
     componentDidMount() {
@@ -31,7 +31,7 @@ class Home extends Component {
                         <h1 className="display-4">{user ? `Hello ${user.username}!` : "Hello!"}</h1>
                         <p className="lead">Leads are the lifeblood of a business, and this lead manager can help you keep track on them and follow their sales funnel.</p>
                         <hr className="my-4"></hr>
-                        <p>{`There ${this.props.filteredLeadsNumber === 1 ? `is ${this.props.filteredLeadsNumber} lead which needs` : `are ${this.props.filteredLeadsNumber} leads which need`} to be contacted soon!`}</p>
+                        <p>{`There ${this.props.filteredLeadsGroup.length === 1 ? `is ${this.props.filteredLeadsGroup.length} lead which needs` : `are ${this.props.filteredLeadsGroup.length} leads which need`} to be contacted soon!`}</p>
                     </div>
                 </div>
                 <div className="col-12">
@@ -46,7 +46,7 @@ class Home extends Component {
 const mapStateToProps = state => ({
     auth: state.auth,
     leads: state.leads.leads,
-    filteredLeadsNumber: state.leads.filteredLeadsNumber
+    filteredLeadsGroup: state.leads.filteredLeadsGroup
 });
 
 export default connect(

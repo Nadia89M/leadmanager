@@ -4,7 +4,6 @@ const initialState = {
   leads: [],
   searchedLeads: [],
   currentLead: {},
-  filteredLeadsNumber: 0,
   filteredLeadsGroup: []
 };
 
@@ -25,8 +24,7 @@ export default function (state = initialState, action) {
     case FILTERED_LEADS:
       return {
         ...state,
-        filteredLeadsGroup: state.leads.filter(lead => lead.to_be_contacted_on === "SOON" || lead.to_be_contacted_on.toLowerCase() === monthName),
-        filteredLeadsNumber: state.filteredLeadsGroup.length
+        filteredLeadsGroup: state.leads.filter(lead => lead.to_be_contacted_on === "SOON" || lead.to_be_contacted_on.toLowerCase() === monthName)
       };
     case SEARCH_STATUS_LEADS:
       return {
