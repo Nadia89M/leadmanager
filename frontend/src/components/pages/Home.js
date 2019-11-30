@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { filteredLeads, getLeads } from "../../actions/leads";
 
-class Home extends Component {
+import { withTranslation } from 'react-i18next';
+
+class HomeT extends Component {
     static propTypes = {
         auth: PropTypes.object.isRequired,
         filteredLeads: PropTypes.func.isRequired,
@@ -24,14 +26,16 @@ class Home extends Component {
 
     render() {
         const { user } = this.props.auth;
+        const { t } = this.props;
+
         return (
             <div className="row">
                 <div className="col-12">
                     <div className="home-intro">
-                        <h1 className="display-4">{user ? `Hello ${user.username}!` : "Hello!"}</h1>
-                        <p className="lead">Leads are the lifeblood of a business, and this lead manager can help you keep track on them and follow their sales funnel.</p>
+                        <h1 className="display-4">{t('hello.label')} {user ? ` ${user.username}!` : "!"}</h1>
+                        <p className="lead"> {t('intro.label')}</p>
                         <hr className="my-4"></hr>
-                        <p>{`There ${this.props.filteredLeadsGroup.length === 1 ? `is ${this.props.filteredLeadsGroup.length} lead which needs` : `are ${this.props.filteredLeadsGroup.length} leads which need`} to be contacted soon!`}</p>
+                        <p>{`${t('message1.label')} ${this.props.filteredLeadsGroup.length === 1 ? `${t('message2.label')} ${this.props.filteredLeadsGroup.length} ${t('message3.label')}` : `${t('message4.label')} ${this.props.filteredLeadsGroup.length} ${t('message5.label')}`} ${t('message6.label')}`}</p>
                     </div>
                 </div>
                 <div className="col-12">
@@ -42,6 +46,8 @@ class Home extends Component {
         )
     }
 }
+
+const Home = withTranslation()(HomeT)
 
 const mapStateToProps = state => ({
     auth: state.auth,

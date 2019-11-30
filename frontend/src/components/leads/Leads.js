@@ -5,7 +5,9 @@ import { getLeads, deleteLead, setCurrent } from "../../actions/leads";
 import EditLead from "./EditLead";
 import ShowLead from "./ShowLead";
 
-export class Leads extends Component {
+import { withTranslation } from 'react-i18next';
+
+export class LeadsT extends Component {
   static propTypes = {
     leads: PropTypes.array.isRequired,
     searchedLeads: PropTypes.array.isRequired,
@@ -24,13 +26,15 @@ export class Leads extends Component {
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <Fragment>
         <div className="modal fade" id="editModal" tabIndex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Edit Lead</h5>
+                <h5 className="modal-title" id="exampleModalLabel">{t('title1.label')}</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -45,7 +49,7 @@ export class Leads extends Component {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Lead Details</h5>
+                <h5 className="modal-title" id="exampleModalLabel">{t('title2.label')}</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -54,7 +58,7 @@ export class Leads extends Component {
                 <ShowLead />
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">{t('action2.label')}</button>
               </div>
             </div>
           </div>
@@ -63,17 +67,17 @@ export class Leads extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Name</th>
-              <th className="d-none d-lg-table-cell">Email</th>
-              <th>Company</th>
-              <th className="d-none d-xl-table-cell">City</th>
-              <th>Region</th>
-              <th className="d-none d-xl-table-cell">District</th>
-              <th className="d-none d-xl-table-cell">Address</th>
-              <th className="d-none d-lg-table-cell">Number</th>
-              <th className="d-none d-xl-table-cell">Last action</th>
-              <th className="d-none d-xl-table-cell">To be contacted on</th>
-              <th className="d-none d-xl-table-cell">Status</th>
+              <th>{t('data1.label')}</th>
+              <th className="d-none d-lg-table-cell">{t('data2.label')}</th>
+              <th>{t('data3.label')}</th>
+              <th className="d-none d-xl-table-cell">{t('data4.label')}</th>
+              <th>{t('data5.label')}</th>
+              <th className="d-none d-xl-table-cell">{t('data6.label')}</th>
+              <th className="d-none d-xl-table-cell">{t('data7.label')}</th>
+              <th className="d-none d-lg-table-cell">{t('data8.label')}</th>
+              <th className="d-none d-xl-table-cell">{t('data9.label')}</th>
+              <th className="d-none d-xl-table-cell">{t('data10.label')}</th>
+              <th className="d-none d-xl-table-cell">{t('data11.label')}</th>
               <th />
             </tr>
           </thead>
@@ -89,15 +93,71 @@ export class Leads extends Component {
                 <td className="d-none d-xl-table-cell">{lead.address}</td>
                 <td className="d-none d-lg-table-cell">{lead.number}</td>
                 <td className="d-none d-xl-table-cell">{lead.last_action}</td>
-                <td className="d-none d-xl-table-cell">{lead.to_be_contacted_on}</td>
-                <td className="d-none d-xl-table-cell">{lead.status}</td>
+                <td className="d-none d-xl-table-cell">
+                  {
+                    lead.to_be_contacted_on == "SOON" ? `${t('month.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "JANUARY" ? `${t('month1.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "FEBRUARY" ? `${t('month2.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "MARCH" ? `${t('month3.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "APRIL" ? `${t('month4.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "MAY" ? `${t('month5.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "JUNE" ? `${t('month6.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "JULY" ? `${t('month7.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "AUGUST" ? `${t('month8.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "SEPTEMBER" ? `${t('month9.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "OCTOBER" ? `${t('month10.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "NOVEMBER" ? `${t('month11.label')}` : ""
+                  }
+                  {
+                    lead.to_be_contacted_on == "DECEMBER" ? `${t('month12.label')}` : ""
+                  }
+                </td>
+                <td className="d-none d-xl-table-cell">
+                  {
+                    lead.status == "NEW" ? `${t('status1.label')}` : ""
+                  }
+                  {
+                    lead.status == "CONTACTED" ? `${t('status2.label')}` : ""
+                  }
+                  {
+                    lead.status == "CONNECTED" ? `${t('status3.label')}` : ""
+                  }
+                  {
+                    lead.status == "OPEN" ? `${t('status4.label')}` : ""
+                  }
+                  {
+                    lead.status == "UNQUALIFIED" ? `${t('status5.label')}` : ""
+                  }
+                </td>
                 <td>
                   <div className="d-flex justify-content-center">
                     <a className="px-2" href="#" data-toggle="modal" data-target="#showModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
                       {" "}
                       <i className="far fa-eye"></i>
                     </a>
-                    <a className="px-2 d-none d-xl-block" href="#" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
+                    <a className="px-2" href="#" data-toggle="modal" data-target="#editModal" onClick={this.props.setCurrent.bind(this, lead.id)}>
                       {" "}
                       <i className="fa fa-edit"></i>
                     </a>
@@ -117,6 +177,8 @@ export class Leads extends Component {
     );
   }
 }
+
+const Leads = withTranslation()(LeadsT)
 
 const mapStateToProps = state => ({
   leads: state.leads.leads,

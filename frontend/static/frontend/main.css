@@ -16,6 +16,10 @@ h2 {
     margin-right: 10px;
 }
 
+.current-language {
+    font-weight: bolder;   
+}
+
 .home-background {
     background-image: url("illustration.png");
     background-size: 60%;

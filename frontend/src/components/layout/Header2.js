@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { filteredLeads, getLeads } from "../../actions/leads";
+import LanguageSelector from "./LanguageSelector";
 
-class Header2 extends Component {
+import { withTranslation } from 'react-i18next';
+
+class Header2T extends Component {
     static propTypes = {
         auth: PropTypes.object.isRequired,
         filteredLeads: PropTypes.func.isRequired,
@@ -25,6 +28,7 @@ class Header2 extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
+        const { t } = this.props;
 
         const guestDiv = (
             <Fragment>
@@ -39,19 +43,22 @@ class Header2 extends Component {
                         <span>{this.props.filteredLeadsGroup.length}</span>
                     </i>
                     <div className="dropdown-menu bell-notify-box notify-box">
-                        <span className="notify-title">You have {`${this.props.filteredLeadsGroup.length === 1 ? `${this.props.filteredLeadsGroup.length}  new notification` : `${this.props.filteredLeadsGroup.length}  new notifications`}`}<Link to="/dashboard">View all</Link></span>
+                        <span className="notify-title">{t('notification1.label')} {`${this.props.filteredLeadsGroup.length === 1 ? `${this.props.filteredLeadsGroup.length}  ${t('notification2.label')}` : `${this.props.filteredLeadsGroup.length}  ${t('notification3.label')}`}`}<Link to="/dashboard">{t('notification4.label')}</Link></span>
                         <div className="nofity-list">
                             {this.props.filteredLeadsGroup.map(lead => (
                                 <a href="#" className="notify-item">
                                     <div className="notify-thumb"><i className="fas fa-phone btn-info"></i></div>
                                     <div className="notify-text">
-                                        <p>Call {lead.name} {lead.name && lead.company ? '-' : ''} {lead.company}</p>
+                                        <p>{t('notification5.label')} {lead.name} {lead.name && lead.company ? '-' : ''} {lead.company}</p>
                                         <span> {lead.number} </span>
                                     </div>
                                 </a>
                             ))}
                         </div>
                     </div>
+                </li>
+                <li>
+                    <LanguageSelector />
                 </li>
             </Fragment>
         );
@@ -80,6 +87,8 @@ class Header2 extends Component {
         )
     }
 }
+
+const Header2 = withTranslation()(Header2T)
 
 const mapStateToProps = state => ({
     auth: state.auth,

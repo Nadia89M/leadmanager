@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addLead } from "../../actions/leads";
 
-export class Form extends Component {
+import { withTranslation } from 'react-i18next';
+
+export class FormT extends Component {
   state = {
     name: "",
     email: "",
@@ -53,13 +55,14 @@ export class Form extends Component {
   };
 
   render() {
+    const { t } = this.props;
     const { name, email, message, company, city, region, district, address, number, status, last_action, to_be_contacted_on, open } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h4 className="pb-3 page-title pull-left">Add Lead <i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h4>
+        <h4 className="pb-3 page-title pull-left">{t('title.label')}<i className="fas fa-plus" onClick={this.onClick} hidden={open === true}></i><i className="fas fa-minus" onClick={this.onClick} hidden={open === false}></i></h4>
         <form onSubmit={this.onSubmit} hidden={open === false}>
           <div className="form-group">
-            <label>Name</label>
+            <label>{t('data1.label')}</label>
             <input
               className="form-control"
               type="text"
@@ -69,7 +72,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Email</label>
+            <label>{t('data2.label')}</label>
             <input
               className="form-control"
               type="email"
@@ -79,7 +82,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Phone Number</label>
+            <label>{t('data3.label')}</label>
             <input
               className="form-control"
               type="number"
@@ -89,7 +92,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Company</label>
+            <label>{t('data4.label')}</label>
             <input
               className="form-control"
               type="company"
@@ -99,7 +102,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Region</label>
+            <label>{t('data5.label')}</label>
             <input
               className="form-control"
               type="region"
@@ -109,7 +112,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>District</label>
+            <label>{t('data6.label')}</label>
             <input
               className="form-control"
               type="district"
@@ -119,7 +122,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>City</label>
+            <label>{t('data7.label')}</label>
             <input
               className="form-control"
               type="city"
@@ -129,7 +132,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Address</label>
+            <label>{t('data8.label')}</label>
             <input
               className="form-control"
               type="address"
@@ -139,7 +142,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Last Action</label>
+            <label>{t('data9.label')}</label>
             <input
               className="form-control"
               type="date"
@@ -149,35 +152,35 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>To be contacted on</label>
+            <label>{t('data10.label')}</label>
             <select className="form-control" name="to_be_contacted_on" value={to_be_contacted_on} defaultValue={to_be_contacted_on} onChange={this.onChange}>
-              <option value="SOON">Soon</option>
-              <option value="JANUARY">January</option>
-              <option value="FEBRUARY">February</option>
-              <option value="MARCH">March</option>
-              <option value="APRIL">April</option>
-              <option value="MAY">May</option>
-              <option value="JUNE">June</option>
-              <option value="JULY">July</option>
-              <option value="AUGUST">August</option>
-              <option value="SEPTEMBER">September</option>
-              <option value="OCTOBER">October</option>
-              <option value="NOVEMBER">November</option>
-              <option value="DECEMBER">December</option>
+              <option value="SOON">{t('month.label')}</option>
+              <option value="JANUARY">{t('month1.label')}</option>
+              <option value="FEBRUARY">{t('month2.label')}</option>
+              <option value="MARCH">{t('month3.label')}</option>
+              <option value="APRIL">{t('month4.label')}</option>
+              <option value="MAY">{t('month5.label')}</option>
+              <option value="JUNE">{t('month6.label')}</option>
+              <option value="JULY">{t('month7.label')}</option>
+              <option value="AUGUST">{t('month8.label')}</option>
+              <option value="SEPTEMBER">{t('month9.label')}</option>
+              <option value="OCTOBER">{t('month10.label')}</option>
+              <option value="NOVEMBER">{t('month11.label')}</option>
+              <option value="DECEMBER">{t('month12.label')}</option>
             </select>
           </div>
           <div className="form-group">
-            <label>Status</label>
+            <label>{t('data11.label')}</label>
             <select className="form-control" name="status" value={status} defaultValue={status} onChange={this.onChange}>
-              <option value="NEW">New</option>
-              <option value="CONTACTED">Attempted to Contact</option>
-              <option value="CONNECTED">Connected</option>
-              <option value="OPEN">Open Deal</option>
-              <option value="UNQUALIFIED">Unqualified</option>
+              <option value="NEW">{t('status1.label')}</option>
+              <option value="CONTACTED">{t('status2.label')}</option>
+              <option value="CONNECTED">{t('status3.label')}</option>
+              <option value="OPEN">{t('status4.label')}</option>
+              <option value="UNQUALIFIED">{t('status5.label')}</option>
             </select>
           </div>
           <div className="form-group">
-            <label>Message</label>
+            <label>{t('data12.label')}</label>
             <textarea
               className="form-control"
               type="text"
@@ -188,7 +191,7 @@ export class Form extends Component {
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-primary">
-              Submit
+              {t('action3.label')}
             </button>
           </div>
         </form>
@@ -196,6 +199,8 @@ export class Form extends Component {
     );
   }
 }
+
+const Form = withTranslation()(FormT)
 
 export default connect(
   null,
