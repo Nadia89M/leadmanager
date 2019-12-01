@@ -32,7 +32,7 @@ class HomeT extends Component {
             <div className="row">
                 <div className="col-12">
                     <div className="home-intro">
-                        <h1 className="display-4">{t('hello.label')} {user ? ` ${user.username}!` : "!"}</h1>
+                        <h1 className="display-6">{t('hello.label')} {user ? ` ${user.username}!` : "!"}</h1>
                         <p className="lead"> {t('intro.label')}</p>
                         <hr className="my-4"></hr>
                         <p>{`${t('message1.label')} ${this.props.filteredLeadsGroup.length === 1 ? `${t('message2.label')} ${this.props.filteredLeadsGroup.length} ${t('message3.label')}` : `${t('message4.label')} ${this.props.filteredLeadsGroup.length} ${t('message5.label')}`} ${t('message6.label')}`}</p>
