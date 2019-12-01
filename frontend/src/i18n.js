@@ -22,7 +22,8 @@ i18n
             formatSeparator: ','
         },
         react: {
-            wait: true
+            wait: true,
+            useSuspense: false
         }
     })
 
