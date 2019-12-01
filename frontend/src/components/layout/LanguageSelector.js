@@ -6,7 +6,7 @@ const LanguageSelector = () => {
     const { i18n } = useTranslation();
 
     return (
-        <div class="language">
+        <div className="language">
             <span className={i18n.language == "it" ? "current-language" : ""} onClick={() => i18n.changeLanguage('it')}>IT</span> | <span className={i18n.language == "en" ? "current-language" : ""} onClick={() => i18n.changeLanguage('en')}>EN</span>
         </div>
     )

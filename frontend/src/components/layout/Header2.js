@@ -1,13 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { filteredLeads, getLeads } from "../../actions/leads";
-import LanguageSelector from "./LanguageSelector";
+import Notification from "./Notification";
 
-import { withTranslation } from 'react-i18next';
-
-class Header2T extends Component {
+class Header2 extends Component {
     static propTypes = {
         auth: PropTypes.object.isRequired,
         filteredLeads: PropTypes.func.isRequired,
@@ -28,40 +25,6 @@ class Header2T extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
-        const { t } = this.props;
-
-        const guestDiv = (
-            <Fragment>
-                <div></div>
-            </Fragment>
-        )
-
-        const authDiv = (
-            <Fragment>
-                <li className="dropdown">
-                    <i className="ti-bell dropdown-toggle" data-toggle="dropdown">
-                        <span>{this.props.filteredLeadsGroup.length}</span>
-                    </i>
-                    <div className="dropdown-menu bell-notify-box notify-box">
-                        <span className="notify-title">{t('notification1.label')} {`${this.props.filteredLeadsGroup.length === 1 ? `${this.props.filteredLeadsGroup.length}  ${t('notification2.label')}` : `${this.props.filteredLeadsGroup.length}  ${t('notification3.label')}`}`}<Link to="/dashboard">{t('notification4.label')}</Link></span>
-                        <div className="nofity-list">
-                            {this.props.filteredLeadsGroup.map(lead => (
-                                <a href="#" className="notify-item">
-                                    <div className="notify-thumb"><i className="fas fa-phone btn-info"></i></div>
-                                    <div className="notify-text">
-                                        <p>{t('notification5.label')} {lead.name} {lead.name && lead.company ? '-' : ''} {lead.company}</p>
-                                        <span> {lead.number} </span>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <LanguageSelector />
-                </li>
-            </Fragment>
-        );
 
         return (
             <Fragment>
@@ -78,7 +41,7 @@ class Header2T extends Component {
                             <ul className="notification-area pull-right">
                                 <li id="full-view"><i className="ti-fullscreen"></i></li>
                                 <li id="full-view-exit"><i className="ti-zoom-out"></i></li>
-                                {(isAuthenticated && window.location.href.endsWith("/")) ? authDiv : guestDiv}
+                                {(isAuthenticated && window.location.href.endsWith("/")) ? <Notification /> : ""}
                             </ul>
                         </div>
                     </div>
@@ -87,8 +50,6 @@ class Header2T extends Component {
         )
     }
 }
-
-const Header2 = withTranslation()(Header2T)
 
 const mapStateToProps = state => ({
     auth: state.auth,

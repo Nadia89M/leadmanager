@@ -16,18 +16,18 @@ export class ShowLeadT extends Component {
 
         return (
             <div className="card mt-4 mb-4">
-                <ul class="list-group">
-                    <li class="list-group-item"><h3><b>{t('data1.label')}</b>: {currentLead.name}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data2.label')}</b>: {currentLead.email}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data3.label')}</b>: {currentLead.message}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data4.label')}</b>: {currentLead.company}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data5.label')}</b>: {currentLead.city}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data6.label')}</b>: {currentLead.region}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data7.label')}</b>: {currentLead.district}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data8.label')}</b>: {currentLead.address}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data9.label')}</b>: {currentLead.number}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data10.label')}</b>: {currentLead.last_action}</h3></li>
-                    <li class="list-group-item"><h3><b>{t('data11.label')}</b>:
+                <ul className="list-group">
+                    <li className="list-group-item"><h3><b>{t('data1.label')}</b>: {currentLead.name}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data2.label')}</b>: {currentLead.email}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data3.label')}</b>: {currentLead.message}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data4.label')}</b>: {currentLead.company}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data5.label')}</b>: {currentLead.city}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data6.label')}</b>: {currentLead.region}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data7.label')}</b>: {currentLead.district}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data8.label')}</b>: {currentLead.address}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data9.label')}</b>: {currentLead.number}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data10.label')}</b>: {currentLead.last_action}</h3></li>
+                    <li className="list-group-item"><h3><b>{t('data11.label')}</b>:
                     {
                             currentLead.to_be_contacted_on == "SOON" ? ` ${t('month.label')}` : ""
                         }
@@ -68,7 +68,7 @@ export class ShowLeadT extends Component {
                             currentLead.to_be_contacted_on == "DECEMBER" ? ` ${t('month12.label')}` : ""
                         }
                     </h3></li>
-                    <li class="list-group-item"><h3><b>{t('data12.label')}</b>:
+                    <li className="list-group-item"><h3><b>{t('data12.label')}</b>:
                         {
                             currentLead.status == "NEW" ? ` ${t('status1.label')}` : ""
                         }
