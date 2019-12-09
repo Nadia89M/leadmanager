@@ -176,7 +176,9 @@ export class FormT extends Component {
               <option value="CONTACTED">{t('status2.label')}</option>
               <option value="CONNECTED">{t('status3.label')}</option>
               <option value="OPEN">{t('status4.label')}</option>
-              <option value="UNQUALIFIED">{t('status5.label')}</option>
+              <option value="LEAD">{t('status5.label')}</option>
+              <option value="CLIENT">{t('status6.label')}</option>
+              <option value="UNQUALIFIED">{t('status7.label')}</option>
             </select>
           </div>
           <div className="form-group">

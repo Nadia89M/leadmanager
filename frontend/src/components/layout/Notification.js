@@ -11,6 +11,7 @@ class NotificationT extends Component {
     static propTypes = {
         filteredLeads: PropTypes.func.isRequired,
         filteredLeadsGroup: PropTypes.array.isRequired,
+        proposalGroup: PropTypes.array.isRequired,
         getLeads: PropTypes.func.isRequired
     };
 
@@ -35,9 +36,26 @@ class NotificationT extends Component {
                         <span>{this.props.filteredLeadsGroup.length}</span>
                     </i>
                     <div className="dropdown-menu bell-notify-box notify-box">
-                        <span className="notify-title">{t('notification1.label')} {`${this.props.filteredLeadsGroup.length === 1 ? `${this.props.filteredLeadsGroup.length}  ${t('notification2.label')}` : `${this.props.filteredLeadsGroup.length}  ${t('notification3.label')}`}`}<Link to="/dashboard">{t('notification4.label')}</Link></span>
+                        <span className="notify-title">{`${t('message1.label')} ${this.props.filteredLeadsGroup.length === 1 ? `${t('message2.label')} ${this.props.filteredLeadsGroup.length} ${t('message3.label')}` : `${t('message4.label')} ${this.props.filteredLeadsGroup.length} ${t('message5.label')}`} ${t('message6.label')}`}</span>
                         <div className="nofity-list">
                             {this.props.filteredLeadsGroup.map(lead => (
+                                <a key={lead.id} href="#" className="notify-item">
+                                    <div className="notify-thumb"><i className="fas fa-phone btn-info"></i></div>
+                                    <div className="notify-text">
+                                        <p>{t('notification5.label')} {lead.name} {lead.name && lead.company ? '-' : ''} {lead.company}</p>
+                                        <span> {lead.number} </span>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </li>
+                <li className="dropdown">
+                    <i className="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>{this.props.proposalGroup.length}</span></i>
+                    <div className="dropdown-menu notify-box nt-enveloper-box">
+                        <span className="notify-title">{`${t('proposal1.label')} ${this.props.proposalGroup.length === 1 ? `${t('proposal2.label')} ${this.props.proposalGroup.length} ${t('proposal3.label')}` : `${t('proposal4.label')} ${this.props.proposalGroup.length} ${t('proposal5.label')}`} ${t('proposal6.label')}`}</span>
+                        <div className="nofity-list">
+                            {this.props.proposalGroup.map(lead => (
                                 <a key={lead.id} href="#" className="notify-item">
                                     <div className="notify-thumb"><i className="fas fa-phone btn-info"></i></div>
                                     <div className="notify-text">
@@ -61,7 +79,8 @@ const Notification = withTranslation()(NotificationT)
 
 const mapStateToProps = state => ({
     leads: state.leads.leads,
-    filteredLeadsGroup: state.leads.filteredLeadsGroup
+    filteredLeadsGroup: state.leads.filteredLeadsGroup,
+    proposalGroup: state.leads.proposalGroup
 });
 
 export default connect(

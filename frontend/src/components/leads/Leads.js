@@ -148,7 +148,13 @@ export class LeadsT extends Component {
                     lead.status == "OPEN" ? `${t('status4.label')}` : ""
                   }
                   {
-                    lead.status == "UNQUALIFIED" ? `${t('status5.label')}` : ""
+                    lead.status == "LEAD" ? `${t('status5.label')}` : ""
+                  }
+                  {
+                    lead.status == "CLIENT" ? `${t('status6.label')}` : ""
+                  }
+                  {
+                    lead.status == "UNQUALIFIED" ? `${t('status7.label')}` : ""
                   }
                 </td>
                 <td>

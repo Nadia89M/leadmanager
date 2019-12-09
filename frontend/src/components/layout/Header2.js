@@ -9,6 +9,7 @@ class Header2 extends Component {
         auth: PropTypes.object.isRequired,
         filteredLeads: PropTypes.func.isRequired,
         filteredLeadsGroup: PropTypes.array.isRequired,
+        proposalGroup: PropTypes.array.isRequired,
         getLeads: PropTypes.func.isRequired
     };
 
@@ -54,7 +55,8 @@ class Header2 extends Component {
 const mapStateToProps = state => ({
     auth: state.auth,
     leads: state.leads.leads,
-    filteredLeadsGroup: state.leads.filteredLeadsGroup
+    filteredLeadsGroup: state.leads.filteredLeadsGroup,
+    proposalGroup: state.leads.proposalGroup,
 });
 
 export default connect(

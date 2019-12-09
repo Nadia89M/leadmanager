@@ -82,7 +82,13 @@ export class ShowLeadT extends Component {
                             currentLead.status == "OPEN" ? ` ${t('status4.label')}` : ""
                         }
                         {
-                            currentLead.status == "UNQUALIFIED" ? ` ${t('status5.label')}` : ""
+                            currentLead.status == "LEAD" ? `${t('status5.label')}` : ""
+                        }
+                        {
+                            currentLead.status == "CLIENT" ? `${t('status6.label')}` : ""
+                        }
+                        {
+                            currentLead.status == "UNQUALIFIED" ? `${t('status7.label')}` : ""
                         }
                     </h3></li>
                 </ul>
