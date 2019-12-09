@@ -42,7 +42,7 @@ class Header2 extends Component {
                             <ul className="notification-area pull-right">
                                 <li id="full-view"><i className="ti-fullscreen"></i></li>
                                 <li id="full-view-exit"><i className="ti-zoom-out"></i></li>
-                                {(isAuthenticated) ? <Notification /> : ""}
+                                {(isAuthenticated && window.location.href.endsWith("/")) ? <Notification /> : ""}
                             </ul>
                         </div>
                     </div>
