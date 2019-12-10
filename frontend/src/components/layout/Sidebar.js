@@ -8,7 +8,7 @@ export default class Sidebar extends Component {
                 <div className="sidebar-menu">
                     <div className="sidebar-header">
                         <div className="logo">
-                            <a href="index.html"><div className="logo"></div></a>
+                            <Link to="/"><div className="logo"></div></Link>
                         </div>
                     </div>
                     <div className="main-menu">
