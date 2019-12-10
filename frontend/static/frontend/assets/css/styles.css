@@ -785,13 +785,33 @@ ul.breadcrumbs {
     -webkit-transform: none!important;
             transform: none!important;
     top: 130%!important;
-    right: 30px!important;
+    right: -30px!important;
     left: auto!important;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     display: block!important;
     visibility: hidden;
     opacity: 0;
+}
+
+@media screen and (max-width: 400px) {
+    .notification-area .dropdown-menu {
+        right: -150px!important;
+    }
+  }
+
+  @media (min-width: 400px) and (max-width: 767px) {
+    .notification-area .dropdown-menu {
+        right: -80px!important;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .notification-area .dropdown-menu {
+        right: -50px!important;
+    }
+
 }
 
 .notification-area .dropdown-menu.show,
