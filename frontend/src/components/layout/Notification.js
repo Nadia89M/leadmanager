@@ -15,15 +15,20 @@ class NotificationT extends Component {
         getLeads: PropTypes.func.isRequired
     };
 
-    componentDidMount() {
-        this.props.getLeads();
-        setTimeout(
-            function () {
-                this.props.filteredLeads();
-            }
-                .bind(this),
-            500
-        );
+    componentDidUpdate(oldProps) {
+        // By duplicating the data, you have to then
+        // keep the local copy in sync with the
+        // updated props...
+        if (oldProps.filteredLeadsGroup !== this.props.filteredLeadsGroup || oldProps.proposalGroup !== this.props.proposalGroup) {
+            this.props.getLeads();
+            setTimeout(
+                function () {
+                    this.props.filteredLeads();
+                }
+                    .bind(this),
+                500
+            );
+        }
     }
 
     render() {
